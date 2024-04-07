@@ -1,38 +1,7 @@
-import { createEvent, createStore, type Event, type EventCallable, sample, split, type Store } from 'effector'
-import type { ComponentConstructorOptions } from 'svelte'
+import { createEvent, createStore, type EventCallable, sample, split } from 'effector'
 
 import GateComponent from './GateComponent.svelte'
-
-export type GateStateControls = {
-  $$stateChanged: EventCallable<any>
-  $$statusChanged: EventCallable<boolean>
-}
-
-export type GateState<T> = {
-  open: Event<void>
-  close: Event<void>
-  status: Store<boolean>
-  state: Store<T | undefined>
-} & GateStateControls
-
-type GateConstructorOptions<T = undefined> = ComponentConstructorOptions<{
-  state?: T
-}>
-
-// type GateComponentType = SvelteComponent<EmptyPropsOptions>
-
-// // type SvelteGateComponent = SvelteComponent & {
-//   open: Event<void>
-//   close: Event<void>
-//   status: Store<boolean>
-// // }
-
-export type Gate<T> = SvelteComponentConstructor<GateComponent, GateConstructorOptions<T>> & GateState<T>
-
-type GateConfig<T> = {
-  defaultState?: T | any
-  name?: string
-}
+import type { Gate, GateConfig, GateConstructorOptions } from './index.h'
 
 export function createGate<T = null> (config?: GateConfig<T>): Gate<T> {
   const prefix = `${config?.name ?? 'gate'}.`

@@ -1,6 +1,6 @@
 import { createStore, sample } from 'effector'
 
-import { createGate } from '../../../src/gate/unit'
+import { createGate } from '../../../src/gate/createGate'
 
 export const SimpleGate = createGate()
 

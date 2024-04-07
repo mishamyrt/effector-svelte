@@ -1,4 +1,4 @@
-import type { Gate } from './unit'
+import type { Gate } from './index.h'
 
 export function gate<T = null> (_: HTMLElement, gate: Gate<T>) {
   gate.$$statusChanged(true)
