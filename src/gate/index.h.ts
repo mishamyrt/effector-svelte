@@ -23,6 +23,8 @@ export type GateConstructorOptions<T = EmptyState> = ComponentConstructorOptions
   state?: T
 }>
 
+type SvelteComponentConstructor<T, U extends ComponentConstructorOptions<any>> = new (options: U) => T
+
 export type Gate<T> = SvelteComponentConstructor<
 GateComponent,
 GateConstructorOptions<T>
