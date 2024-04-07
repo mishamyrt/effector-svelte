@@ -3,6 +3,8 @@
   "version": "1.0.1",
   "description": "Svelte bindings for effector",
   "main": "dist/effector-svelte.es.js",
+  "repository": "https://github.com/mishamyrt/effector-svelte",
+  "bugs": "https://github.com/mishamyrt/effector-svelte/issues",
   "files": [
     "dist",
     "package.json",
