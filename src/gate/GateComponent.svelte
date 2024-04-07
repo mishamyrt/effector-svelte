@@ -2,6 +2,8 @@
   import type { EventCallable } from 'effector'
   import { onMount } from 'svelte'
 
+  import { emptyState } from './index.h'
+
   export let stateChanged: EventCallable<any>
   export let statusChanged: EventCallable<boolean>
   export let state: any = null
@@ -11,7 +13,7 @@
     return () => statusChanged(false)
   })
 
-  $: state && stateChanged(state)
+  $: state !== emptyState && stateChanged(state)
 </script>
 
 <slot />

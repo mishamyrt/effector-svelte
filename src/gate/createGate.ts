@@ -1,20 +1,25 @@
-import { createEvent, createStore, type EventCallable, sample, split } from 'effector'
+import { createEvent, createStore, type EventCallable, split } from 'effector'
 
+import { normalizeConfig } from './config'
 import GateComponent from './GateComponent.svelte'
-import type { Gate, GateConfig, GateConstructorOptions } from './index.h'
+import type { EmptyState, Gate, GateConfig, GateConstructorOptions } from './index.h'
 
-export function createGate<T = null> (config?: GateConfig<T>): Gate<T> {
-  const prefix = `${config?.name ?? 'gate'}.`
-  const defaultState = config?.defaultState ?? null
+export function createGate<T = EmptyState> (configOrName?: GateConfig<T> | string): Gate<T> {
+  const { name, defaultState } = normalizeConfig(configOrName)
 
-  const statusChanged = createEvent<boolean>(prefix + 'statusChanged')
-  const stateChanged = createEvent<T>(prefix + 'stateChanged')
-  const opened = createEvent(prefix + 'open')
-  const closed = createEvent(prefix + 'close')
+  const statusChanged = createEvent<boolean>(name + '.statusChanged')
+  const stateChanged = createEvent<T>(name + '.stateChanged')
+  const opened = createEvent(name + '.open')
+  const closed = createEvent(name + '.close')
 
-  const $status = createStore(false, { name: prefix + 'status' })
-  const $state = createStore<T>(defaultState, { name: prefix + 'state' })
-
+  const $status = createStore(false, {
+    name: name + '.status'
+  })
+    .on(statusChanged, (_, status) => status)
+  const $state = createStore<T>(defaultState, {
+    name: name + '.state'
+  })
+    .on(stateChanged, (_, state) => state)
   split({
     source: $status,
     match: {
@@ -25,14 +30,6 @@ export function createGate<T = null> (config?: GateConfig<T>): Gate<T> {
       open: opened,
       close: closed
     }
-  })
-  sample({
-    source: statusChanged,
-    target: $status
-  })
-  sample({
-    source: stateChanged,
-    target: $state
   })
 
   class AttachedGate extends GateComponent {
