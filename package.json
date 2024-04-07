@@ -1,6 +1,6 @@
 {
   "name": "effector-svelte",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Svelte bindings for effector",
   "main": "dist/effector-svelte.es.js",
   "exports": {
