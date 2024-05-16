@@ -1,33 +1,31 @@
-const { resolve } = require('path')
-
 module.exports = {
   extends: [
     'love',
     'plugin:svelte/recommended',
   ],
   plugins: [
-    'eslint-plugin-simple-import-sort'
+    'eslint-plugin-simple-import-sort',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
-    extraFileExtensions: ['.svelte']
+    extraFileExtensions: ['.svelte'],
   },
   overrides: [
     {
       files: ['*.svelte'],
       parser: 'svelte-eslint-parser',
       parserOptions: {
-        parser: '@typescript-eslint/parser'
-      }
-    }
+        parser: '@typescript-eslint/parser',
+      },
+    },
   ],
   rules: {
     'svelte/valid-compile': [
       'error',
       {
-        ignoreWarnings: true
-      }
+        ignoreWarnings: true,
+      },
     ],
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     '@typescript-eslint/strict-boolean-expressions': 'off',
@@ -40,6 +38,7 @@ module.exports = {
     'no-undef-init': 'off',
     '@typescript-eslint/no-unsafe-argument': 'off',
     'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error'
-  }
+    'simple-import-sort/exports': 'error',
+    '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
+  },
 }

@@ -13,23 +13,23 @@ export function createGate<T = EmptyState> (configOrName?: GateConfig<T> | strin
   const closed = createEvent(name + '.close')
 
   const $status = createStore(false, {
-    name: name + '.status'
+    name: name + '.status',
   })
     .on(statusChanged, (_, status) => status)
   const $state = createStore<T>(defaultState, {
-    name: name + '.state'
+    name: name + '.state',
   })
     .on(stateChanged, (_, state) => state)
   split({
     source: $status,
     match: {
       open: (isOpen) => isOpen,
-      close: (isOpen) => !isOpen
+      close: (isOpen) => !isOpen,
     },
     cases: {
       open: opened,
-      close: closed
-    }
+      close: closed,
+    },
   })
 
   class AttachedGate extends GateComponent {
@@ -46,8 +46,8 @@ export function createGate<T = EmptyState> (configOrName?: GateConfig<T> | strin
         props: {
           ...options.props,
           stateChanged: stateChanged as EventCallable<any>,
-          statusChanged
-        }
+          statusChanged,
+        },
       })
     }
   }

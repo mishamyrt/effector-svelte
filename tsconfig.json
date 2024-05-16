@@ -11,15 +11,6 @@
       "strictNullChecks": true,
       "allowSyntheticDefaultImports": true,
       "isolatedModules": true,
-      "paths": {
-        "$features/*": ["src/features/*"],
-        "$shared/*": ["src/shared/*"],
-        "$widgets": ["src/widgets"],
-        "$entities/*": ["src/entities/*"],
-        "$pages": ["src/pages"],
-        "$wails/runtime": ["src/wailsjs/runtime/runtime"],
-        "$wails/go/*": ["src/wailsjs/go/*"]
-      },
       "outDir": "dist"
     },
     "include": [
@@ -31,10 +22,8 @@
       "src/**/*.svelte",
       "vite.config.ts",
       "svelte.config.js",
-      ".stylelintrc.cjs",
-      "src/wailsjs/**/*.d.ts"
+      ".eslintrc.cjs",
     ],
-    "exclude": ["src/wailsjs/**/*.js"],
     "references": [
       {
         "path": "./tsconfig.node.json"

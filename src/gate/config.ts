@@ -8,17 +8,17 @@ export function normalizeConfig<T> (config?: GateConfigOrName<T>): StrictGateCon
   if (!config) {
     return {
       name: 'gate',
-      defaultState: emptyState as T
+      defaultState: emptyState as T,
     }
   }
   if (isGateConfig(config)) {
     return {
       name: config.name ?? 'gate',
-      defaultState: config.defaultState ?? emptyState as T
+      defaultState: config.defaultState ?? emptyState as T,
     }
   }
   return {
     name: config,
-    defaultState: emptyState as T
+    defaultState: emptyState as T,
   }
 }

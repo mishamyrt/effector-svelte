@@ -5,6 +5,6 @@ export function gate<T = null> (_: HTMLElement, gate: Gate<T>) {
   return {
     destroy () {
       gate.$$statusChanged(false)
-    }
+    },
   }
 }
