@@ -1,4 +1,4 @@
-# ☄️ Effector Svelte
+# ☄️ Effector Svelte [![Quality Assurance](https://github.com/mishamyrt/effector-svelte/actions/workflows/qa.yaml/badge.svg)](https://github.com/mishamyrt/effector-svelte/actions/workflows/qa.yaml)
 
 Svelte bindings for effector.
 
