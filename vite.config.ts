@@ -1,10 +1,31 @@
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import * as path from 'path'
-import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import { configDefaults, defineConfig } from 'vitest/config'
+
+const testExclude = [
+  '**/node_modules/**',
+  '**/*.{js,svelte}',
+  'src/wailsjs/**/*',
+  '**/api/*.ts',
+  '**/*.h.ts',
+  '**/index.ts',
+  '**/.pnpm/**',
+]
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    exclude: [...configDefaults.exclude, ...testExclude],
+    include: ['src/**/__tests__/*.test.ts'],
+    environment: 'jsdom',
+    coverage: {
+      exclude: [...testExclude],
+      enabled: true,
+      provider: 'v8',
+      reporter: ['html'],
+    },
+  },
   build: {
     lib: {
       formats: ['es'],
@@ -21,4 +42,12 @@ export default defineConfig({
     target: 'esnext',
   },
   plugins: [svelte(), dts({ rollupTypes: true })],
+  resolve: process.env.TEST
+    ? {
+        alias: [{
+          find: /^svelte$/,
+          replacement: path.join(__dirname, 'node_modules/svelte/src/runtime/index.js'),
+        }],
+      }
+    : {},
 })
