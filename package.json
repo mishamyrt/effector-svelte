@@ -21,7 +21,9 @@
   "scripts": {
     "dev": "vite dev",
     "start": "pnpm dev",
-    "build": "vite build"
+    "build": "vite build",
+    "test": "vitest --run",
+    "lint": "eslint ."
   },
   "keywords": [
     "svelte",
