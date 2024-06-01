@@ -14,7 +14,7 @@ const testExclude = [
 ]
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   test: {
     exclude: [...configDefaults.exclude, ...testExclude],
     include: ['src/**/__tests__/*.test.ts'],
@@ -42,12 +42,7 @@ export default defineConfig({
     target: 'esnext',
   },
   plugins: [svelte(), dts({ rollupTypes: true })],
-  resolve: process.env.TEST
-    ? {
-        alias: [{
-          find: /^svelte$/,
-          replacement: path.join(__dirname, 'node_modules/svelte/src/runtime/index.js'),
-        }],
-      }
-    : {},
-})
+  resolve: {
+    conditions: mode === 'test' ? ['browser'] : [],
+  },
+}))
