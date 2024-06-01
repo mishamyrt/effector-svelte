@@ -3,7 +3,7 @@ import type { ComponentConstructorOptions } from 'svelte'
 
 import type GateComponent from './GateComponent.svelte'
 
-export const emptyState = {}
+export const emptyState = null
 
 export type EmptyState = typeof emptyState
 

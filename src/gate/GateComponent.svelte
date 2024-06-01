@@ -6,7 +6,7 @@
 
   export let stateChanged: EventCallable<any>
   export let statusChanged: EventCallable<boolean>
-  export let state: any = null
+  export let state: any = emptyState
 
   onMount(() => {
     statusChanged(true)
